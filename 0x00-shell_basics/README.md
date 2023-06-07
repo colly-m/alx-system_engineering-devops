@@ -1,1 +1,1 @@
-#Scripting lecture 
+#Scripting lecture in shell
