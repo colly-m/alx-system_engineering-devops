@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# This script is displayingnumbers from 1 to 100 FizzBuzz if number
+#is multiple of 3 and 5 Fizz if of 3 and Buzz if of 5
+
+for i in {1..100}; do
+	if [ $((i % 3)) -eq 0 ] && [ $((i % 5)) -eq 0 ]; then
+		echo "FizzBuzz"
+	elif [ $((i % 3)) -eq 0 ]; then
+		echo "Fizz"
+	elif [ $((i % 5)) -eq 0 ]; then
+		echo "Buzz"
+	else
+		echo "$i"
+	fi
+done
