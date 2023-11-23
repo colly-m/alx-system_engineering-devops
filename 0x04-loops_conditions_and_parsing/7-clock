@@ -2,26 +2,15 @@
 # This script displays hours from 0 t0 12 and minutes from 1 to 59
 
 hrs=0
-min=1
 
-while true;
+while [ $hrs -le 12 ]
 do
-	echo "Hour: $min"
-
-	min=$((min + 1))
-
-	if [ $min -gt 59 ];
-	then
-		min=1
-		hrs=$((hrs + 1))
-	fi
-
 	echo "Hour: $hrs"
-
-	if [ $hrs -gt 12 ];
-	then
-		hrs=0
-	fi
-
-	sleep 60
+	min=1
+	while [ $min -le 59 ]
+	do
+		echo "$min"
+		(( min++ ))
+	done
+	(( hrs++ ))
 done

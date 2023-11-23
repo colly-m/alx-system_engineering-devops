@@ -1,2 +1,5 @@
 #!/usr/bin/env bash
-# This script is displaying
+# This script is displaying visitors Ip with HTTP status code
+
+
+awk '{print $1 " " $9}' /C:/User/user/Downloads/apache-access.log
