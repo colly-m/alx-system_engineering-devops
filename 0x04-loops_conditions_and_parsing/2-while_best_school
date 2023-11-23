@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# This script displays "Best School" 10 times
+
+repeat_time=10
+
+counter=1
+
+while [ $counter -le $repeat_time ]
+do
+	echo "Best School"
+	counter=$(( counter+1 ))
+done
