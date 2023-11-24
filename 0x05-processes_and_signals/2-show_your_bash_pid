@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Script to display lines containing bash word
+
+ps aux --forest | grep bash | grep -v grep
