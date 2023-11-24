@@ -1,13 +1,9 @@
 #!/usr/bin/env bash
 # Script to displays text with sleep 2 in between
-# When receiving a SIGTERM signal
+# I am invincible!!! When receiving a SIGTERM signal
 
-function handle_sigterm {
-	echo "I am invincible!!!"
-	exit 0
-}
 
-trap 'handle_sigterm' SIGTERM
+trap 'echo "I am invincible!!!"' 15
 while true;
 do
 	echo "To infinity and beyond"
