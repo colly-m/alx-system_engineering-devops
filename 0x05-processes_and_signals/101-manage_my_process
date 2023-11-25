@@ -11,15 +11,13 @@ then
 		
 elif [ "$1" == "stop" ]
 then
-	pid=$(pgrep -f ./manage_my_process)
-	kill $pid
+	kill "$(pgrep -f ./manage_my_process)"
 	rm $PID_FILE
 	echo "manage_my_process stopped"
 
 elif [ "$1" == "restart" ]
 then
-	pid=$(pgrep -f ./manage_my_process)
-	kill $pid
+	kill "$(pgrep -f ./manage_my_process)"
 	rm $PID_FILE
 	./manage_my_process &
 	echo $$ > $PID_FILE
