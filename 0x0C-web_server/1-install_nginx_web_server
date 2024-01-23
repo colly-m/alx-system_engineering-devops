@@ -2,12 +2,12 @@
 # Install ngix on web server, Ngix should be listening to port 80
 
 sudo apt-get -y update
-sudo apt-get -y install ngix
+sudo apt-get -y install nginx
 
-sudo servive nginx start
+sudo service nginx start
 
 # Allow ngix on firewall
-sudo ufw allow 'Ngix HTTP'
+sudo ufw allow 'Nginx HTTP'
 
 # Gives ownership to website for editing
 sudo chown -R $USER:$USER /var/www/html/index.nginx-debian.html
