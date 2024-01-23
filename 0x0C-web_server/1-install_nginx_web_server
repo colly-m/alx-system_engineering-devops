@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Install ngix on web server; Ngix should be listening to port 80
+
+sudo apt-get -y update
+sudo apt-get -y install ngix
+
+# Allow ngix on firewall
+sudo ufw allow 'Ngix HTTP'
+
+# Gives ownership to website for editing
+sudo chown -R $USER:$USER /var/www/html/index.nginx-debian.html
+sudo echo "Hello World!" > /var/www/html/index.nginx-debian.html
+
+# Restarts Nginx
+sudo service ngix restart
