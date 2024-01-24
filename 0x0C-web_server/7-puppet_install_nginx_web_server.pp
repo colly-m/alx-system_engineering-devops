@@ -1,57 +1,26 @@
-# Define a Puppet class for installing and configuring Nginx
-class nginx_installation {
+# Script to define a Puppet class for installing and configuring Nginx
 
-  # Ensure Nginx package is installed
-  package { 'nginx':
-    ensure => 'present',
-  }
+package {'nginx':
+  ensure   => 'present',
+}
 
-  # Manage the Nginx default configuration file
-  file { '/etc/nginx/sites-available/default':
-    ensure  => file,
-    source  => 'puppet:///modules/nginx_installation/default',
-    notify  => Exec['nginx_restart'],
-  }
-
-  # Manage the HTML file
-  file { '/var/www/html/index.html':
-    ensure  => file,
-    content => "Hello World!\n",
-  }
-
-  # Manage Nginx service
-  service { 'nginx':
-    ensure    => 'running',
-    enable    => true,
-    subscribe => File['/etc/nginx/sites-available/default'],
-  }
-
-  # Restart Nginx when the configuration changes
-  exec { 'nginx_restart':
-    command     => 'sudo service nginx restart',
-    refreshonly => true,
-  }
+# Installation  of nginx
+exec {'install':
+  command  => 'sudo apt-get update ; sudo apt-get -y install nginx',
+  provider => shell,
 
 }
 
-# Include the class to apply it
-include nginx_installation
+exec {'Hello':
+  command  => 'echo "Hello World!" | sudo tee /var/www/html/index.html',
+  provider => shell,
+}
 
-server {
-    listen 80 default_server;
-    listen [::]:80 default_server;
+exec {'sudo sed -i "s/listen 80 default_server;/listen 80 default_server;\\n\\tlocation \/redirect_me {\\n\\t\\treturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4\/;\\n\\t}/" /etc/nginx/sites-available/default':
+  provider => shell,
+}
 
-    root /var/www/html;
-
-    index index.html index.htm;
-
-    server_name _;
-
-    location /redirect_me {
-        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4/;
-    }
-
-    location / {
-        try_files $uri $uri/ =404;
-    }
+exec {'run':
+  command  => 'sudo service nginx restart',
+  provider => shell,
 }
