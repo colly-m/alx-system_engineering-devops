@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# Script to install and configure HAProxy on lb-01 server
+# Configuring HAProxy to send traffic to web-01 and web-02 servers
+# Distribution is through roundrobin algorithm requests
+# Requires HAProxy to be manage via init script
+
+# Installs and configures HAProxy on lb-01 server
+sudo apt-get -y update
+apt-get -y install haproxy
+
+# Configuration HAProxy file to distribute request using roundrobin
+echo "
+frontend ollic.tech
+        bind *:80
+        mode http
+        default_backend ollic.tech_servers
+
+backend ollic.tech_servers
+        balance roundrobin
+        server 450562-web-01 54.160.89.0:80 check
+        server 450562-web-02 54.197.102.65:80 check
+" >> /etc/haproxy/haproxy.cfg
+
+# Restarts Nginx service
+sudo service haproxy restart
