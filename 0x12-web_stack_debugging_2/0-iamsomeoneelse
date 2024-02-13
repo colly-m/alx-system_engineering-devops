@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Bash script to accept one argument, running the whoami command
+
+sudo -u "$1" whoami
