@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Bash script to configure a a container with nginx running as user
+# Nginx listening on port 8080 and apt-get remove cannot be used
+
+# To remove apache interfering with nginx running process
+pkill apache2
+
+sed -i "s/#user www-data/user nginx/" /etc/nginx/nginx.conf
+
+# Replacing port 80 with 8080 in config file
+sed -i "s/80/8080/g" /etc/nginx/sites-available/default
+
+# Giving readad and write permission to owner
+chmod 644 /etc/nginx/nginx.conf
+
+# Starting nginx service with new user
+sudo -u nginx service nginx start
