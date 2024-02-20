@@ -3,6 +3,7 @@
 returns information about his/her TODO list progress."""
 from requests import get
 import sys
+import json
 
 
 if __name__ == '__main__':
