@@ -3,9 +3,9 @@
 Script to export data in the JSON format, then records employees tasks
 """
 import csv
+import json
 from requests import get
 import sys
-import json
 
 
 if __name__ == '__main__':
