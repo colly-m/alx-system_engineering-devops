@@ -2,4 +2,4 @@
 # This script is displaying visitors Ip with HTTP status code
 
 
-awk '{print $1 " " $9}' /C:/User/user/Downloads/apache-access.log
+awk '{print $1 " " $9}' Downloads\apache-access.log

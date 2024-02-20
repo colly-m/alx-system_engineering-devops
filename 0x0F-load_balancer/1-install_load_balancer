@@ -17,8 +17,8 @@ frontend ollic.tech
 
 backend ollic.tech_servers
         balance roundrobin
-        server 450562-web-01 54.160.89.0:80 check
-        server 450562-web-02 54.197.102.65:80 check
+        server 450562-web-01 54.243.56.63:80 check
+        server 450562-web-02 54.209.3.212:80 check
 " >> /etc/haproxy/haproxy.cfg
 
 # Restarts Nginx service
