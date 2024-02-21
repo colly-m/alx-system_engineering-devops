@@ -3,12 +3,12 @@
 Script to export data i JSON format and records all employees tasks
 """
 import json
-from requests import get
+import requests
 
 
 if __name__ == "__main__":
     base_url = "https://jsonplaceholder.typicode.com/"
-    user = get(base_url + "users").json()
+    user = requests.get(base_url + "user").json()
 
     with open("todo_all_employees.json", "w") as jsonfile:
         json.dump({
